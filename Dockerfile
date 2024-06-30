@@ -14,3 +14,15 @@ RUN ln /usr/bin/composer.phar /usr/bin/composer
 RUN apt-get install -yqq python
 RUN adduser --disabled-password -gecos "" application
 RUN apt-get update -yqq && apt-get -y install screen netcat default-mysql-client
+# Install the PECL HTTP extension
+RUN apt-get update && apt-get install -y \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libnghttp2-dev \
+    pkg-config \
+    && docker-php-ext-install curl
+RUN pecl install raphf-2.0.1 propro-2.0.1
+RUN docker-php-ext-enable raphf propro
+RUN pecl install pecl_http-3.2.4
+RUN docker-php-ext-enable http
+
