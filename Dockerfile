@@ -5,7 +5,7 @@ RUN apt-get install -yqq git libmcrypt-dev libpq-dev libcurl4-gnutls-dev libicu-
 RUN apt-get install -yqq libzip-dev
 RUN apt-get install -yqq libonig-dev
 RUN docker-php-ext-install gmp bcmath zip pdo_mysql mbstring curl json intl gd xml bz2 opcache
-RUN pecl install xdebug
+RUN pecl install xdebug-3.1.6
 RUN docker-php-ext-enable xdebug
 RUN curl -sS https://getcomposer.org/installer | php
 RUN chmod +x composer.phar
